@@ -1,57 +1,50 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import { HomePage, AboutPage } from './pages'
 
 function App() {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to='/about'>About</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to='/users'>Users</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
+          <AboutPage path='/about' />
+          <Route path='/users'>
             <Users />
           </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <HomePage path='/' />
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
+// function Home() {
+//   return <h2>Home</h2>
+// }
 
-function About() {
-  return <h2>About</h2>;
-}
+// function About() {
+//   return <h2>About</h2>
+// }
 
 function Users() {
-  return <h2>Users</h2>;
+  return <h2>Users</h2>
 }
 
-export default App;
+export default App
