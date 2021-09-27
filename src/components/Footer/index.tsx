@@ -21,27 +21,27 @@ const Footer: React.FC = (props) => (
         sx={{ display: 'flex', flexDirection: 'column' }}
       >
         <Link underline='none' href='#' sx={styles.footerLink}>
-          <EmailIcon sx={{ paddingBottom: '2px', verticalAlign: 'middle' }} />
+          <EmailIcon sx={styles.linkIcon} />
           &ensp;Email
         </Link>
         <Link underline='none' href='#' sx={styles.footerLink}>
           <LinkedInIcon
-            sx={{ paddingBottom: '2px', verticalAlign: 'middle' }}
+            sx={styles.linkIcon}
           />
           &ensp;LinkedIn
         </Link>
         <Link underline='none' href='#' sx={styles.footerLink}>
-          <GitHubIcon sx={{ paddingBottom: '2px', verticalAlign: 'middle' }} />
+          <GitHubIcon sx={styles.linkIcon} />
           &ensp;Github
         </Link>
         <Link underline='none' href='#' sx={styles.footerLink}>
           <InstagramIcon
-            sx={{ paddingBottom: '2px', verticalAlign: 'middle' }}
+            sx={styles.linkIcon}
           />
           &ensp;Instagram
         </Link>
         <Link underline='none' href='#' sx={styles.footerLink}>
-          <CodeIcon sx={{ paddingBottom: '2px', verticalAlign: 'middle' }} />
+          <CodeIcon sx={styles.linkIcon} />
           &ensp;StackOverflow
         </Link>
       </Grid>

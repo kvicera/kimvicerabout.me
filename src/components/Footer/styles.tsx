@@ -14,3 +14,13 @@ export const footerWrapper = {
   paddingTop: '50px',
   paddingBottom: '50px',
 } as const
+
+export const footerGrid = {
+  display: 'flex',
+  flexDirection: 'column',
+} as const
+
+export const linkIcon = {
+  paddingBottom: '2px',
+  verticalAlign: 'middle',
+} as const

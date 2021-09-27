@@ -64,28 +64,22 @@ export const HomePage: React.FC<PrivateRouteProps> = ({ ...rest }) => {
     </>
   )
   const aboutSection = (
-    <Grid sx={{ paddingLeft: '30px', paddingTop: '10px' }}>
-      <Typography
-        variant='h6'
-        sx={{ color: '#898989', fontFamily: 'Rubik', paddingBottom: '30px' }}
-      >
-        Hi! I'm Victor Francis Vicera, a software engineer from Makati,
-        Philippines! I'm currently working at Denso Techno Philippines Inc. as a
-        Software Engineer, dealing with Robotic Processes Automation and QA
-        Testing.
-      </Typography>
-      <Button
-        variant='contained'
-        endIcon={<ArrowForwardIcon />}
-        sx={{
-          backgroundColor: '#ffffff',
-          color: '#1d1d1d',
-          fontFamily: 'Rubik',
-          borderRadius: '25px',
-        }}
-      >
-        Read More
-      </Button>
+    <Grid sx={styles.aboutSectionWrapper}>
+      <Container maxWidth='md'>
+        <Typography variant='h6' sx={styles.aboutSectionParagraph}>
+          Hi! I'm Victor Francis Vicera, a software engineer from Makati,
+          Philippines! I'm currently working at Denso Techno Philippines Inc. as
+          a Software Engineer, dealing with Robotic Processes Automation and QA
+          Testing.
+        </Typography>
+        <Button
+          variant='contained'
+          endIcon={<ArrowForwardIcon />}
+          sx={styles.aboutSectionReadMoreButton}
+        >
+          Read More
+        </Button>
+      </Container>
     </Grid>
   )
   return (

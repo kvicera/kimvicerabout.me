@@ -3,8 +3,8 @@ import React from 'react'
 import * as styles from './styles'
 
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 
 interface ComponentProp {
   sectionTitle: string
@@ -13,18 +13,16 @@ interface ComponentProp {
 
 const Section: React.FC<ComponentProp> = (props) => {
   return (
-    <Grid container sx={{paddingTop: '20px'}}>
-      <Grid item xs={2} sx={{ display: 'block' }}>
-        <Container>
-          <Typography variant='h1' sx={styles.sectionTitle}>
-            {props.sectionTitle}
-          </Typography>
-        </Container>
-      </Grid>
+    <Container
+      sx={styles.sectionWrapper}
+    >
+      <Typography variant='h1' sx={styles.sectionTitle}>
+        {props.sectionTitle}
+      </Typography>
       <Grid container xs={10} spacing={2}>
         {props.innerDiv}
       </Grid>
-    </Grid>
+    </Container>
   )
 }
 

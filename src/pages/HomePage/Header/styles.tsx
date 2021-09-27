@@ -25,9 +25,17 @@ export const siteTagLineText = {
 } as const
 
 export const headerImgStyle = {
-  width: 'auto',
-  height: 'auto',
+  width: '40vw',
+  height: '40vw',
   maxWidth: '300px',
   maxHeight: '300px',
   boxShadow: '12',
+} as const
+
+export const avatarWrapper = {
+  '@media (min-width: 600px)': {
+    marginTop: '-5rem',
+  },
+  display: 'flex',
+  justifyContent: 'flex-end',
 } as const

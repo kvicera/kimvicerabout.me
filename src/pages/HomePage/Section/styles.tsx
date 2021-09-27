@@ -13,3 +13,13 @@ export const sectionTitle = {
     fontSize: '62px',
   },
 } as const
+
+export const sectionWrapper = {
+  paddingTop: '25px',
+  '@media (max-width: 800px)': {
+    marginTop: '7vh',
+  },
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'flex-start',
+} as const

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTheme } from '@mui/material/styles'
 
 import * as styles from './styles'
 
@@ -31,22 +30,16 @@ const Header: React.FC<ComponentProp> = (props) => (
       </Container>
     </Grid>
     <Grid container sx={styles.spacer}>
-      <Grid item xs={7}></Grid>
-      <Grid item xs={5}>
-        <Container
-          sx={{
-            [useTheme().breakpoints.up('sm')]: {
-              marginTop: '-5rem',
-            },
-          }}
-        >
-          <Avatar
-            alt={props.siteName}
-            src={props.headerImg}
-            sx={styles.headerImgStyle}
-          />
-        </Container>
-      </Grid>
+      <Container
+        maxWidth='md'
+        sx={styles.avatarWrapper}
+      >
+        <Avatar
+          alt={props.siteName}
+          src={props.headerImg}
+          sx={styles.headerImgStyle}
+        />
+      </Container>
     </Grid>
   </>
 )
