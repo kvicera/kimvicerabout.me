@@ -15,37 +15,18 @@ interface ComponentProp {
   description: string
 }
 
-const Tile: React.FC<ComponentProp> = (props) => (
-  <>
-    <Card
-      sx={{
-        backgroundColor: 'transparent',
-        maxWidth: 345,
-        marginBottom: '50px',
-      }}
-    >
+const Tile: React.FC<ComponentProp> = (props) => {
+  const tileThumbnailStyle = {
+    background: `url(${props.thumbnail})`,
+    ...styles.tileThumbnail,
+  }
+
+  console.log(tileThumbnailStyle)
+  return (
+    <Card sx={styles.tileWrapper}>
       <CardActionArea>
-        <CardContent
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            flexDirection: 'column',
-            padding: 0,
-            fontFamily: 'Rubik',
-            height: 500,
-            background: `url(${props.thumbnail})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-          }}
-        >
-          <Grid
-            sx={{
-              padding: 2,
-              background:
-                'linear-gradient(to bottom, rgba(23,23,23,0), rgba(0,0,0,0.8))',
-            }}
-          >
+        <CardContent sx={tileThumbnailStyle}>
+          <Grid sx={styles.gradient}>
             <Typography
               gutterBottom
               variant='h5'
@@ -65,7 +46,7 @@ const Tile: React.FC<ComponentProp> = (props) => (
         </CardContent>
       </CardActionArea>
     </Card>
-  </>
-)
+  )
+}
 
 export default Tile

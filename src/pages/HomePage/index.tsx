@@ -6,6 +6,7 @@ import * as styles from './styles'
 import Header from './Header'
 import Section from './Section'
 import Footer from '../../components/Footer'
+import Carousel from '../../components/Carousel'
 import Tile from './Tile'
 
 import Grid from '@mui/material/Grid'
@@ -94,6 +95,7 @@ export const HomePage: React.FC<PrivateRouteProps> = ({ ...rest }) => {
           />
           <Container sx={styles.container}>
             <Section sectionTitle='Work' innerDiv={workSection} />
+            <Section sectionTitle='Cert.' innerDiv={<Carousel />} />
             <Section sectionTitle='About' innerDiv={aboutSection} />
           </Container>
           <Footer />
