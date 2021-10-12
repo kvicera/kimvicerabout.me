@@ -7,23 +7,31 @@ import Grid from '@mui/material/Grid'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
+import { SxProps } from '@mui/system'
 
 interface ComponentProp {
   thumbnail: string
   thumbnailAlt: string
   title: string
   description: string
+  sx?: SxProps
+  elevation?: number
 }
 
-const Tile: React.FC<ComponentProp> = (props) => {
+const Tile: React.FC<ComponentProp> = ({
+  sx,
+  title,
+  description,
+  thumbnail,
+  elevation
+}) => {
   const tileThumbnailStyle = {
-    background: `url(${props.thumbnail})`,
+    background: `url(${thumbnail})`,
     ...styles.tileThumbnail,
   }
 
-  console.log(tileThumbnailStyle)
   return (
-    <Card sx={styles.tileWrapper}>
+    <Card sx={{ ...styles.tileWrapper, ...sx }} elevation={elevation}>
       <CardActionArea>
         <CardContent sx={tileThumbnailStyle}>
           <Grid sx={styles.gradient}>
@@ -33,14 +41,14 @@ const Tile: React.FC<ComponentProp> = (props) => {
               component='div'
               sx={styles.tileTitle}
             >
-              {props.title}
+              {title}
             </Typography>
             <Typography
               variant='body1'
               color='#565656'
               sx={styles.tileDescription}
             >
-              {props.description}
+              {description}
             </Typography>
           </Grid>
         </CardContent>

@@ -7,13 +7,24 @@ import Container from '@mui/material/Container'
 import Link from '@mui/material/Link'
 
 import links from './data/links'
+import { SxProps } from '@mui/system'
 
-const Footer: React.FC = (props) => (
-  <Grid sx={styles.footerWrapper}>
+interface ComponentProp {
+  sx?: SxProps
+}
+
+const Footer: React.FC<ComponentProp> = ({ sx }) => (
+  <Grid sx={{ ...styles.footerWrapper, ...sx }}>
     <Container maxWidth='md'>
       <Grid item xs={12} md={6} sx={styles.footerGrid}>
         {links.map((item, i) => (
-          <Link underline='none' href={item.url} sx={styles.footerLink}>
+          <Link
+            key={item.label}
+            underline='none'
+            href={item.url}
+            sx={styles.footerLink}
+            rel='noopener'
+          >
             {item.icon}&ensp;{item.label}
           </Link>
         ))}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import * as styles from './styles'
 
@@ -9,54 +9,60 @@ import Container from '@mui/material/Container'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import Grid from '@mui/material/Grid'
+import { SxProps } from '@mui/system'
 
-const Footer: React.FC = (props) => (
-  <Grid
-    container
-    sx={{
-      paddingTop: '50px',
-      paddingBottom: '50px',
-      overflow: 'hidden',
-    }}
-  >
-    <Container maxWidth='md' sx={{ marginBottom: '40rem' }}>
-      <Paper
-        elevation={3}
-        sx={{
-          height: '40rem',
-          width: '2000px',
-          backgroundColor: 'white',
-          position: 'absolute',
-        }}
-      ></Paper>
-    </Container>
-    <Container maxWidth='md' sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <ButtonGroup disableElevation variant='contained'>
-        <Button
-          sx={{
-            marginTop: '30px',
-            backgroundColor: '#ffffff',
-            color: '#1d1d1d',
-            fontFamily: 'Rubik',
-            borderRadius: '25px',
-          }}
-        >
-          <ArrowBackIcon />
-        </Button>
-        <Button
-          sx={{
-            marginTop: '30px',
-            backgroundColor: '#ffffff',
-            color: '#1d1d1d',
-            fontFamily: 'Rubik',
-            borderRadius: '25px',
-          }}
-        >
-          <ArrowForwardIcon />
-        </Button>
-      </ButtonGroup>
-    </Container>
-  </Grid>
-)
+interface ComponentProp {
+  sx?: SxProps
+}
 
-export default Footer
+const Carousel: React.FC<ComponentProp> = ({ sx, children }) => {
+  const [margin, setMargin] = useState(0)
+
+  const clickHandler = (direction: string) => {
+    switch (direction) {
+      case 'right':
+        margin >= 0 ? setMargin(0) : setMargin(margin + 150)
+        break
+      case 'left':
+        setMargin(margin - 150)
+        break
+      default:
+      // do nothing
+    }
+  }
+
+  const carouselStyle = {
+    ...styles.carousel,
+    marginLeft: `${margin}px`,
+  } as const
+
+  return (
+    <Grid container sx={{ ...styles.container, ...sx }} spacing={2} direction='row'>
+      <Container maxWidth='md' sx={{ marginBottom: '40rem' }}>
+        <Grid container direction='row' sx={carouselStyle}>
+          {/* <Grid
+            container
+            spacing={2}
+            direction='row'
+            justifyContent='left'
+            alignItems='center'
+          > */}
+            {children}
+          {/* </Grid> */}
+        </Grid>
+      </Container>
+      <Container maxWidth='md' sx={styles.buttonContainer}>
+        <ButtonGroup disableElevation variant='contained'>
+          <Button onClick={() => clickHandler('left')} sx={styles.buttons}>
+            <ArrowBackIcon />
+          </Button>
+          <Button onClick={() => clickHandler('right')} sx={styles.buttons}>
+            <ArrowForwardIcon />
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </Grid>
+  )
+}
+
+export default Carousel

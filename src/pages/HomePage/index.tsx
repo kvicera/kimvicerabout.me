@@ -3,11 +3,11 @@ import { Route, RouteProps } from 'react-router-dom'
 
 import * as styles from './styles'
 
-import Header from './Header'
-import Section from './Section'
+import Header from '../../components/Header'
+import Section from '../../components/Section'
 import Footer from '../../components/Footer'
 import Carousel from '../../components/Carousel'
-import Tile from './Tile'
+import Tile from '../../components/Tile'
 
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
@@ -43,8 +43,9 @@ export const HomePage: React.FC<PrivateRouteProps> = ({ ...rest }) => {
       thumbnailAlt: 'tile 2',
     },
   ]
-  const tileComponents = tilesData.map((d) => (
+  const tileComponents = tilesData.map((d, i) => (
     <Tile
+      key={i.toString() + d.title}
       title={d.title}
       description={d.description}
       thumbnail={d.thumbnail}
@@ -54,39 +55,10 @@ export const HomePage: React.FC<PrivateRouteProps> = ({ ...rest }) => {
   const column1 = tileComponents.slice(0, tileComponents.length / 2)
   const column2 = tileComponents.slice(tileComponents.length / 2)
 
-  const workSection = (
-    <>
-      <Grid item xs={12} md={6}>
-        {column2}
-      </Grid>
-      <Grid item xs={12} md={6} sx={styles.workSectionCol2}>
-        {column1}
-      </Grid>
-    </>
-  )
-  const aboutSection = (
-    <Grid sx={styles.aboutSectionWrapper}>
-      <Container maxWidth='md'>
-        <Typography variant='h6' sx={styles.aboutSectionParagraph}>
-          Hi! I'm Victor Francis Vicera, a software engineer from Makati,
-          Philippines! I'm currently working at Denso Techno Philippines Inc. as
-          a Software Engineer, dealing with Robotic Processes Automation and QA
-          Testing.
-        </Typography>
-        <Button
-          variant='contained'
-          endIcon={<ArrowForwardIcon />}
-          sx={styles.aboutSectionReadMoreButton}
-        >
-          Read More
-        </Button>
-      </Container>
-    </Grid>
-  )
   return (
     <Route
       {...rest}
-      render={(props) => (
+      render={() => (
         <Grid sx={styles.body}>
           <Header
             siteName='Victor Francis Vicera'
@@ -94,9 +66,48 @@ export const HomePage: React.FC<PrivateRouteProps> = ({ ...rest }) => {
             headerImg='https://i.imgur.com/2XEk8wR.jpg'
           />
           <Container sx={styles.container}>
-            <Section sectionTitle='Work' innerDiv={workSection} />
-            <Section sectionTitle='Cert.' innerDiv={<Carousel />} />
-            <Section sectionTitle='About' innerDiv={aboutSection} />
+            <Section sectionTitle='Work'>
+              <Grid item xs={12} md={6}>
+                {column2}
+              </Grid>
+              <Grid item xs={12} md={6} sx={styles.workSectionCol2}>
+                {column1}
+              </Grid>
+            </Section>
+            <Section sectionTitle='Cert.'>
+              <Carousel>
+                {tilesData.map((item, i) => (
+                  <Tile
+                    sx={{width: '400px', paddingLeft: '20px'}}
+                    key={i.toString() + item.title}
+                    title={item.title}
+                    description={item.description}
+                    thumbnail={item.thumbnail}
+                    thumbnailAlt={item.thumbnailAlt}
+                    elevation={0}
+                  />
+                ))}
+              </Carousel>
+            </Section>
+            <Section sectionTitle='About'>
+              <Grid sx={styles.aboutSectionWrapper}>
+                <Container maxWidth='md'>
+                  <Typography variant='h6' sx={styles.aboutSectionParagraph}>
+                    Hi! I'm Victor Francis Vicera, a software engineer from
+                    Makati, Philippines! I'm currently working at Denso Techno
+                    Philippines Inc. as a Software Engineer, dealing with
+                    Robotic Processes Automation and QA Testing.
+                  </Typography>
+                  <Button
+                    variant='contained'
+                    endIcon={<ArrowForwardIcon />}
+                    sx={styles.aboutSectionReadMoreButton}
+                  >
+                    Read More
+                  </Button>
+                </Container>
+              </Grid>
+            </Section>
           </Container>
           <Footer />
         </Grid>

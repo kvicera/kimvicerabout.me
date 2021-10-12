@@ -5,22 +5,22 @@ import * as styles from './styles'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import { SxProps } from '@mui/system'
 
 interface ComponentProp {
   sectionTitle: string
   innerDiv?: React.ReactNode
+  sx?: SxProps
 }
 
-const Section: React.FC<ComponentProp> = (props) => {
+const Section: React.FC<ComponentProp> = ({ sx, sectionTitle, children }) => {
   return (
-    <Container
-      sx={styles.sectionWrapper}
-    >
+    <Container sx={{ ...styles.sectionWrapper, ...sx }}>
       <Typography variant='h1' sx={styles.sectionTitle}>
-        {props.sectionTitle}
+        {sectionTitle}
       </Typography>
-      <Grid container xs={10} spacing={2}>
-        {props.innerDiv}
+      <Grid container spacing={2}>
+        {children}
       </Grid>
     </Container>
   )
